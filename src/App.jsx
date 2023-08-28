@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { GoCheckCircleFill } from "react-icons/go";
 
 const NestedSelectOptions = () => {
   const [data, setData] = useState(null);
@@ -66,12 +67,12 @@ const NestedSelectOptions = () => {
       const isSelected = formData.selectedSectors.includes(key);
 
       return (
-        <React.Fragment key={key}>
+        <React.Fragment className='' key={key}>
           <option
             value={key}
-            className={isSelected && isCategory ? 'bg-blue-500 text-white' : ''}
+            className={isSelected ? 'appearance-none bg-bgPrimary text-primary hover:bg-primary py-2 my-[1px] hover:text-white font-bold rounded-md' : ''}
           >
-            {indentation.repeat(level)}{key}
+            {indentation.repeat(level)}{key}{isSelected ? `   ✓` : ''}
           </option>
           {isCategory && renderOptions(value, level + 1)}
         </React.Fragment>
@@ -80,17 +81,23 @@ const NestedSelectOptions = () => {
   };
 
   return (
-    <div className='w-96 flex flex-col'>
+    <div className='w-screen grid justify-center items-center bg-white '>
+    <form className='grid  justify-center items-center bg-lightWhite '>
+      <label htmlFor='name'>Full Name <span className='text-red ' >*</span></label>
       <input
+        className='p-2 rounded-md border-2 border-primary focus:outline-none focus:ring focus:border-primary'
         type="text"
         name="name"
-        placeholder="Name"
+        required
+        minLength={5}
+        maxLength={20}
+        placeholder="Jhone Alex"
         value={formData.name}
         onChange={handleInputChange}
       />
-      <label htmlFor="selection">Select Options:</label>
+      <label htmlFor="selection" className='pt-5'>Select Options:<span className='text-red ' >*</span></label>
       <select
-        className='p-10 h-96 w-96'
+        className='appearance-none p-2 h-80 w-96 rounded-md border-2 border-primary border-primary focus:outline-none focus:ring focus:border-primary'
         id="selection"
         name="selectedSectors"
         multiple
@@ -99,16 +106,18 @@ const NestedSelectOptions = () => {
       >
         {data && renderOptions(data)}
       </select>
-      <label>
+      <label className='flex pt-4 pb-4'>
         <input
+          className='text-primary'
           type="checkbox"
           name="agreeToTerms"
           checked={formData.agreeToTerms}
           onChange={handleInputChange}
         />
-        Agree to terms
+        <p className='pl-2 flex'>Agree to terms <span className='text-red ' >*</span></p>
       </label>
-      <button onClick={handleSave}>Save</button>
+      <button className='py-3 rounded-md border-2  bg-primary text-white font-bold hover:bg-hover' onClick={handleSave}>Submit</button>
+      </form>
     </div>
   );
 };
