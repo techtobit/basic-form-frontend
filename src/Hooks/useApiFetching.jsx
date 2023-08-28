@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiGet, apiPost, apiPut } from './api';
+import { apiGet, apiPost, apiPut } from '../Apis/Api';
 
 
 export const useGet = (url) => {

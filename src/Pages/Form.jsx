@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useGet, usePost, usePut } from '../Hooks/useApiFetching';
 
 const Form = () => {
     const [data, setData] = useState(null);
+    const {data: fetchedData, loading, error} = useGet('/data');
+    const { postLoading, pstError, makePutRequest } = usePut();
+
     const [formData, setFormData] = useState({
         name: '',
         selectedSectors: [],
@@ -12,14 +16,12 @@ const Form = () => {
 
     useEffect(() => {
         // Fetch the JSON data
-        fetch('http://localhost:5000/data')
-            .then(response => response.json())
-            .then(jsonData => {
-                setData(jsonData[0]);
-                console.log(jsonData);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
+        if(fetchedData)
+        {
+            setData(fetchedData[0]);
+            console.log(fetchedData);
+        }
+    }, [fetchedData]);
 
     const handleInputChange = event => {
         const target = event.target;
@@ -38,22 +40,15 @@ const Form = () => {
             alert('Please fill in all mandatory fields.');
             return;
         }
-
         console.log(formData);
-        //Store all input data to the database
-        fetch('http://localhost:5000/saveData', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
+        makePutRequest('/saveData', formData)
+        .then(saveData => {
+            setFormData(saveData);
         })
-        // .then(response => response.json())
-        // .then(savedData => {
-        //   //Refill the form using stored data
-        //   setFormData(savedData); 
-        // })
-        // .catch(error => console.error('Error saving data:', error));
+        .catch(error => {
+            console.log('Error Saveing Data:', error);
+        })
+
     };
 
     const renderOptions = (options, level = 0) => {
