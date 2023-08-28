@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useGet, usePost, usePut } from '../Hooks/useApiFetching';
+import { toast } from 'react-hot-toast';
+import { apiGet } from '../Apis/Api';
 
 const Form = () => {
     const [data, setData] = useState(null);
-    const {data: fetchedData, loading, error} = useGet('/data');
+    const { data: fetchedData, loading, error } = useGet('/data');
+    const { data: submitData} = useGet('/saveData');
     const { postLoading, pstError, makePutRequest } = usePut();
 
     const [formData, setFormData] = useState({
@@ -16,12 +19,19 @@ const Form = () => {
 
     useEffect(() => {
         // Fetch the JSON data
-        if(fetchedData)
-        {
+        if (fetchedData) {
             setData(fetchedData[0]);
             console.log(fetchedData);
         }
     }, [fetchedData]);
+
+    useEffect(() => {
+        // Fetch the JSON data
+        if (submitData) {
+            // setData(submitData[0]);
+            console.log("submitData", submitData);
+        }
+    }, [submitData]);
 
     const handleInputChange = event => {
         const target = event.target;
@@ -34,22 +44,38 @@ const Form = () => {
         });
     };
 
-    const handleSave = () => {
-        //Validate all input data
-        if (!formData.name || formData.selectedSectors.length === 0 || !formData.agreeToTerms) {
-            alert('Please fill in all mandatory fields.');
-            return;
-        }
-        console.log(formData);
-        makePutRequest('/saveData', formData)
-        .then(saveData => {
-            setFormData(saveData);
-        })
-        .catch(error => {
-            console.log('Error Saveing Data:', error);
-        })
+    // const handleSave = () => {
+    //     //Validate all input data
+    //     if (!formData.name || formData.selectedSectors.length === 0 || !formData.agreeToTerms) {
+    //         alert('Please fill in all mandatory fields.');
+    //         return;
+    //     }
+    //     console.log(formData);
+    //     makePutRequest('/saveData', formData)
+    //     .then(saveData => {
+    //         setFormData(saveData);
+    //         toast.success('Successfully Saved!');
+    //     })
+    //     .catch(error => {
+    //         console.log('Error Saveing Data:', error);
+    //     })
 
-    };
+    // };
+
+    const handleSave = async () => {
+        try {
+            // Validate all input data
+            if (!formData.name || formData.selectedSectors.length === 0 || !formData.agreeToTerms) {
+                alert('Please fill in all mandatory fields.');
+                return;
+            }
+            const docUrl = 'http://localhost:5000/saveData';
+            await makePutRequest(docUrl, formData);
+            toast.success('Successfully Saved!');
+        } catch (error) {
+            toast.error("Faild to save")
+        }
+    }
 
     const renderOptions = (options, level = 0) => {
         return Object.keys(options).map(key => {
@@ -61,7 +87,7 @@ const Form = () => {
             const isSelected = formData.selectedSectors.includes(key);
 
             return (
-                <React.Fragment className='' key={key}>
+                <React.Fragment key={key}>
                     <option
                         value={key}
                         className={isSelected ? 'appearance-none bg-bgPrimary text-primary hover:bg-primary py-2 my-[1px] hover:text-white font-bold rounded-md' : ''}
