@@ -32,61 +32,50 @@ const NestedSelectOptions = () => {
     });
   };
 
-
   const handleSave = () => {
-    // Task 3.1: Validate all input data (all fields are mandatory)
+    //Validate all input data
     if (!formData.name || formData.selectedSectors.length === 0 || !formData.agreeToTerms) {
       alert('Please fill in all mandatory fields.');
       return;
     }
 
-    // Task 3.2: Store all input data to the database
-
-    // Assuming you have an API endpoint to store data, make a POST request here.
-    // Replace 'your_api_endpoint' with the actual API endpoint.
     console.log(formData);
-    fetch('your_api_endpoint', {
+    //Store all input data to the database
+    fetch('http://localhost:5000/saveData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
     })
-      .then(response => response.json())
-      .then(savedData => {
-        // Task 3.3: Refill the form using stored data
-        setFormData(savedData); // Assuming the response contains the saved data
-      })
-      .catch(error => console.error('Error saving data:', error));
+      // .then(response => response.json())
+      // .then(savedData => {
+      //   //Refill the form using stored data
+      //   setFormData(savedData); 
+      // })
+      // .catch(error => console.error('Error saving data:', error));
   };
-  
+
   const renderOptions = (options, level = 0) => {
     return Object.keys(options).map(key => {
-      const value = options[key];
-      if (Array.isArray(value)) {
-        return (
-          <React.Fragment key={key}>
-            <option value={key}>{indentation.repeat(level)}{key}</option>
-            {value.map(item => (
-              <option
-                key={`${key}_${item}`}
-                value={`${key}_${item}`}
-                className={formData.selectedSectors.includes(`${key}_${item}`) ? 'bg-blue-500 text-white' : ''}
-              >
-                {indentation.repeat(level + 1)}{item}
-              </option>
-            ))}
-          </React.Fragment>
-        );
-      } else if (typeof value === 'object') {
-        return (
-          <React.Fragment key={key}>
-            <option value={key}>{indentation.repeat(level)}{key}</option>
-            {renderOptions(value, level + 1)}
-          </React.Fragment>
-        );
+      if (key === '_id') {
+        return null; 
       }
-      return null;
+      const value = options[key];
+      const isCategory = !Array.isArray(value) && typeof value === 'object';
+      const isSelected = formData.selectedSectors.includes(key);
+
+      return (
+        <React.Fragment key={key}>
+          <option
+            value={key}
+            className={isSelected && isCategory ? 'bg-blue-500 text-white' : ''}
+          >
+            {indentation.repeat(level)}{key}
+          </option>
+          {isCategory && renderOptions(value, level + 1)}
+        </React.Fragment>
+      );
     });
   };
 
