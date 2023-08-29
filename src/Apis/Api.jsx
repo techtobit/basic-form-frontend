@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'https://basicformbackend.onrender.com';
 
 const sendRequest = async (url, method, data = null) => {
     try {
