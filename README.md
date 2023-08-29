@@ -1,8 +1,28 @@
-# React + Vite
+# Selection Form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Important Links 
+
+ - [Client Side Repo](https://github.com/techtobit/basicformfrontend)
+
+ - [Server Side Repo](https://github.com/techtobit/basicformbackend)
 
 
+ 1. Live Site on [Render](https://selection-form.onrender.com/)
+ 2. Server Site [Render](https://basicformbackend.onrender.com/data)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## This Full-Stack web site developed with 
+- `Html`
+- `Css`
+- `TailwindCss`
+- `JavaScript`
+- `React Js`
+- `React Router`
+- `Node`
+- `Express`
+- `MongoDB`
+## I use Framework & Library For made More futuristic
+1. `React-Toastify` 
+2. `Tailwind`
+3 `FontAwesome`
+4 `Environment Variable`
+5 `Axios`
