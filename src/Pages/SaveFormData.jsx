@@ -16,10 +16,10 @@ const SaveFormData = () => {
 
   return (
     <div className='w-screen  grid justify-center items-center bg-lightWhite '>
-      <form className='lg:w-[850px] h-[416px] py-16 pl-20 grid  justify-start items-center bg-white border-x-[1px] border-b-[1px] border-borderColor'>
+      <form className='lg:w-[850px] h-[416px] py-16 pl-20 grid  justify-start items-center bg-white rounded-md border-x-[1px] border-b-[1px] border-borderColor shadow-xl shadow-blue-500/20'>
         <label htmlFor='name'>Full Name</label>
         <input
-          className='p-2 rounded-md border-2 border-primary '
+          className='p-2 rounded-md border-2 border-primary bg-disable '
           type="text"
           name="name"
           required
@@ -31,7 +31,7 @@ const SaveFormData = () => {
         />
         <label htmlFor="selection" className='pt-5'>Selected Option</label>
         <input
-          className='p-2 rounded-md border-2 border-primary  '
+          className='p-2 rounded-md border-2 border-primary  bg-disable '
           type="text"
           name="name"
           required
@@ -43,7 +43,7 @@ const SaveFormData = () => {
         />
         <label htmlFor="selection" className='pt-5'>Terms & Conditions</label>
         <input
-          className='p-2 rounded-md border-2 border-primary  '
+          className='p-2 rounded-md border-2 border-primary bg-disable  '
           type="text"
           name="name"
           required

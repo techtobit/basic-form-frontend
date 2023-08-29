@@ -8,7 +8,7 @@ export const Home = ({existingDocument}) => {
     useEffect( () => {
     },[] )
     return (
-        <div className='grid justify-center bg-lightWhite font-poppins  '>
+        <div className='w-screen grid justify-center bg-lightWhite font-poppins  '>
         <div className='lg:w-[850px] pl-24 pt-2 grid justify-start bg-white border-x-[1px] border-t-[1px] border-borderColor'>
         <section className=' flex flex-col items-start'>
         <div className='profile-head flex  pt-6 pb-4 items-center'>

@@ -104,8 +104,8 @@ const Form = () => {
     };
 
     return (
-        <div className=' grid justify-center items-center bg-lightWhite '>
-            <form className='lg:w-[850px] h-[416px] py-4 pl-20 grid  justify-start items-center bg-white shadow-indigo-500/50  bg-white border-x-[1px] border-b-[1px] border-borderColor'>
+        <div className='w-screen grid justify-center items-center bg-lightWhite '>
+            <form className='lg:w-[850px] h-[418px] pt-4 pb-6 pl-20 grid  justify-start items-center bg-white shadow-indigo-500/50  bg-white border-x-[1px] border-b-[1px] border-borderColor shadow-xl shadow-blue-500/20 '>
                 <label htmlFor='name'>Full Name <span className='text-red ' >*</span></label>
                 <input
                     className='p-2 rounded-md border-2 border-primary focus:outline-none focus:ring focus:border-primary'

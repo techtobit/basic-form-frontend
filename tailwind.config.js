@@ -12,7 +12,8 @@ export default {
       black: '#000000',
       white : '#ffffff',
       lightWhite : '#FBFCFE',
-      borderColor : '##F2F3F4',
+      borderColor : '#F2F3F4',
+      disable : '#EAEDED',
       red : '#d62828',
       hover: "#3f4ca8"
     }
