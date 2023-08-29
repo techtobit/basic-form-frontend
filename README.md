@@ -10,7 +10,11 @@
  1. Live Site on [Render](https://selection-form.onrender.com/)
  2. Server Site [Render](https://basicformbackend.onrender.com/data)
 
-![Demo Video]([https://github.com/Faizun-Faria/Thief-Robber-Landlord-Police/blob/main/Preview/gif_english.gif](https://www.loom.com/share/cd91a473367b4d31903efe19eaaf65ec?sid=da9f16c2-8402-4f32-aee8-5ff8800b28de))
+ 3.Demo Video
+
+https://github.com/techtobit/basicformfrontend/assets/43129513/bd7827b9-3320-400e-b2ec-5d2f443ebc4a
+
+
 
 ## Framework & Library Used : 
 - `Html`
