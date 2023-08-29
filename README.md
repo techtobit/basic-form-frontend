@@ -19,7 +19,7 @@
 - `React Router`
 - `Node`
 - `Express`
-- `MongoDB```
+- `MongoDB`
 - `React-Toastify` 
 - `Tailwind`
 - `FontAwesome`
