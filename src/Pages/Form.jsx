@@ -3,13 +3,14 @@ import { useGet, usePost, usePut } from '../Hooks/useApiFetching';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 
+
 const Form = () => {
     const [data, setData] = useState(null);
     const [existingDocument, setExistingDocument] = useState(null);
     const { data: fetchedData, loading, error } = useGet('/data');
-    const { data: submitData} = useGet('/saveData');
+    const { data: submitData } = useGet('/saveData');
     const { postLoading, pstError, makePutRequest } = usePut();
-    const {makePostRequest} = usePost();
+    const { makePostRequest } = usePost();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -63,12 +64,12 @@ const Form = () => {
                 const updateUrl = `http://localhost:5000/saveData/${existingDocument?._id}`;
                 // await makePutRequest(updateUrl, formData);
                 axios.put(updateUrl, formData)
-                .then(response => {
-                    console.log(response);
-                })
+                    .then(response => {
+                        console.log(response);
+                    })
                 toast.success('Successfully Updated!');
             }
-            else{
+            else {
                 //Add data in Empty DB
                 makePostRequest('/saveData', formData);
                 toast.success('Successfully Saved!')
@@ -103,8 +104,8 @@ const Form = () => {
     };
 
     return (
-        <div className='w-screen grid justify-center items-center bg-white '>
-            <form className='grid  justify-center items-center bg-lightWhite '>
+        <div className=' grid justify-center items-center bg-lightWhite '>
+            <form className='lg:w-[850px] h-[416px] py-4 pl-20 grid  justify-start items-center bg-white shadow-indigo-500/50  bg-white border-x-[1px] border-b-[1px] border-borderColor'>
                 <label htmlFor='name'>Full Name <span className='text-red ' >*</span></label>
                 <input
                     className='p-2 rounded-md border-2 border-primary focus:outline-none focus:ring focus:border-primary'
@@ -119,7 +120,7 @@ const Form = () => {
                 />
                 <label htmlFor="selection" className='pt-5'>Select Options:<span className='text-red ' >*</span></label>
                 <select
-                    className='appearance-none p-2 h-80 w-96 rounded-md border-2 border-primary border-primary focus:outline-none focus:ring focus:border-primary'
+                    className='appearance-none p-2 h-40 w-96 rounded-md border-2 border-primary border-primary focus:outline-none focus:ring focus:border-primary'
                     id="selection"
                     name="selectedSectors"
                     multiple

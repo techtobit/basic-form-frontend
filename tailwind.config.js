@@ -11,7 +11,8 @@ export default {
       secondary: '#ecc94b',
       black: '#000000',
       white : '#ffffff',
-      lightWhite : '#f8f9fa',
+      lightWhite : '#FBFCFE',
+      borderColor : '##F2F3F4',
       red : '#d62828',
       hover: "#3f4ca8"
     }
