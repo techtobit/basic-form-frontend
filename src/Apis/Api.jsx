@@ -19,4 +19,4 @@ const sendRequest = async (url, method, data = null) => {
 }
 export const apiGet = async(url) => sendRequest(url, 'GET');
 export const apiPost = async(url, data) => sendRequest(url, 'POST', data);
-export const apiPut = async(url, data) => sendRequest(url, 'GET', data);
+export const apiPut = async(url, data) => sendRequest(url, 'PUT', data);

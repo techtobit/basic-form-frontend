@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useGet, usePost, usePut } from '../Hooks/useApiFetching';
 import { toast } from 'react-hot-toast';
-import { apiGet } from '../Apis/Api';
+import axios from 'axios';
 
 const Form = () => {
     const [data, setData] = useState(null);
+    const [existingDocument, setExistingDocument] = useState(null);
     const { data: fetchedData, loading, error } = useGet('/data');
     const { data: submitData} = useGet('/saveData');
     const { postLoading, pstError, makePutRequest } = usePut();
+    const {makePostRequest} = usePost();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -28,10 +30,10 @@ const Form = () => {
     useEffect(() => {
         // Fetch the JSON data
         if (submitData) {
-            // setData(submitData[0]);
-            console.log("submitData", submitData);
+            setExistingDocument(submitData[0]);
         }
     }, [submitData]);
+
 
     const handleInputChange = event => {
         const target = event.target;
@@ -44,24 +46,6 @@ const Form = () => {
         });
     };
 
-    // const handleSave = () => {
-    //     //Validate all input data
-    //     if (!formData.name || formData.selectedSectors.length === 0 || !formData.agreeToTerms) {
-    //         alert('Please fill in all mandatory fields.');
-    //         return;
-    //     }
-    //     console.log(formData);
-    //     makePutRequest('/saveData', formData)
-    //     .then(saveData => {
-    //         setFormData(saveData);
-    //         toast.success('Successfully Saved!');
-    //     })
-    //     .catch(error => {
-    //         console.log('Error Saveing Data:', error);
-    //     })
-
-    // };
-
     const handleSave = async () => {
         try {
             // Validate all input data
@@ -69,9 +53,27 @@ const Form = () => {
                 alert('Please fill in all mandatory fields.');
                 return;
             }
-            const docUrl = 'http://localhost:5000/saveData';
-            await makePutRequest(docUrl, formData);
-            toast.success('Successfully Saved!');
+
+            if (existingDocument) {
+                // Update exiting data
+                existingDocument.name = formData.name;
+                existingDocument.selectedSectors = formData.selectedSectors;
+                existingDocument.agreeToTerms = formData.agreeToTerms;
+
+                const updateUrl = `http://localhost:5000/saveData/${existingDocument?._id}`;
+                // await makePutRequest(updateUrl, formData);
+                axios.put(updateUrl, formData)
+                .then(response => {
+                    console.log(response);
+                })
+                toast.success('Successfully Updated!');
+            }
+            else{
+                //Add data in Empty DB
+                makePostRequest('/saveData', formData);
+                toast.success('Successfully Saved!')
+
+            }
         } catch (error) {
             toast.error("Faild to save")
         }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { apiGet, apiPost, apiPut } from '../Apis/Api';
-import { toast } from 'react-hot-toast';
 
 
 export const useGet = (url) => {
@@ -41,35 +40,6 @@ export const usePost = () => {
     return { loading, error, makePostRequest };
 };
 
-// export const usePut = () => {
-//     const [loading, setLoading] = useState(false);
-//     const [error, setError] = useState(null);
-
-//     const makePutRequest = async (url, data) => {
-//         try {
-//             setLoading(true);
-//             const  existingDocument = await apiGet(url);
-//             if( existingDocument)
-//             {
-//                 existingDocument.name = data.name;
-//                 existingDoc.selectedSectors = data.selectedSectors;
-//                 existingDocument.agreeToTerms = data.agreeToTerms;
-                
-//                 await apiPut(url,  existingDocument);
-//             }
-//             else 
-//             {
-//                 toast.error('Document Not Found')
-//             }
-//         } catch (err) {
-//             setError(err);
-//         } finally {
-//             setLoading(false);
-//         }
-//     };
-
-//     return { loading, error, makePutRequest };
-// };
 export const usePut = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -77,16 +47,7 @@ export const usePut = () => {
     const makePutRequest = async (url, data) => {
         try {
             setLoading(true);
-            const existingDocument = await apiGet(url);
-            if (existingDocument) {
-                existingDocument.name = data.name;
-                existingDocument.selectedSectors = data.selectedSectors;
-                existingDocument.agreeToTerms = data.agreeToTerms;
-
-                await apiPut(url, existingDocument);
-            } else {
-                toast.error('Document Not Found');
-            }
+            await apiPut(url, data);
         } catch (err) {
             setError(err);
         } finally {
@@ -96,3 +57,5 @@ export const usePut = () => {
 
     return { loading, error, makePutRequest };
 };
+
+
