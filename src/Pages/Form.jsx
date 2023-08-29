@@ -93,7 +93,7 @@ const Form = () => {
                 <React.Fragment key={key}>
                     <option
                         value={key}
-                        className={isSelected ? 'appearance-none bg-bgPrimary text-primary hover:bg-primary py-2 my-[1px] hover:text-white font-bold rounded-md' : ''}
+                        className={isSelected ? 'appearance-none bg-bgPrimary text-primary hover:bg-primary lg:py-2 md:py-2 py-[1px]  my-[1px] hover:text-white lg:font-bold md:font-bold font-normal lg:text-sm md:text-md text-sm rounded-md' : ''}
                     >
                         {indentation.repeat(level)}{key}{isSelected ? `   ✓` : ''}
                     </option>
@@ -105,10 +105,10 @@ const Form = () => {
 
     return (
         <div className='w-screen grid justify-center items-center bg-lightWhite '>
-            <form className='lg:w-[850px] md:w[750px] h-[418px] pl-20 md:px-[8.2rem] px-2 pt-4 pb-6 grid  justify-start items-center bg-white shadow-indigo-500/50  bg-white border-x-[1px] border-b-[1px] border-borderColor shadow-xl shadow-blue-500/20 '>
+            <form className='lg:w-[850px] md:w[750px] h-[418px] lg:pl-20 px-[2.8rem] md:px-[8.2rem]  pt-4 pb-6 grid  justify-start items-center bg-white  bg-white border-x-[1px] border-b-[1px] border-borderColor shadow-xl shadow-blue-500/20 '>
                 <label htmlFor='name'>Full Name <span className='text-red ' >*</span></label>
                 <input
-                    className='p-2 px-[1px] lg:w-96 md:w-96  w-9/12  text-sm rounded-md border-2 border-primary focus:outline-none focus:ring focus:border-primary'
+                    className='p-2 px-[1px] lg:w-96 md:w-96 w-[18rem]  text-sm rounded-md border-2 border-primary focus:outline-none focus:ring focus:border-primary'
                     type="text"
                     name="name"
                     required
@@ -120,7 +120,7 @@ const Form = () => {
                 />
                 <label htmlFor="selection" className='pt-5'>Select Options:<span className='text-red ' >*</span></label>
                 <select
-                    className='appearance-none lg:w-96 md:w-96  w-9/12  p-2 h-40 rounded-md border-2 border-primary border-primary focus:outline-none focus:ring focus:border-primary'
+                    className='appearance-none lg:w-96 md:w-96 w-[18rem] p-2 h-40 rounded-md border-2 border-primary border-primary focus:outline-none focus:ring focus:border-primary'
                     id="selection"
                     name="selectedSectors"
                     multiple
@@ -139,7 +139,7 @@ const Form = () => {
                     />
                     <p className='pl-2 flex'>Agree to terms <span className='text-red ' >*</span></p>
                 </label>
-                <button className='py-3 lg:w-96 md:w-96  w-9/12 rounded-md border-2  bg-primary text-white font-bold hover:bg-hover' onClick={handleSave}>Submit</button>
+                <button className='py-3 lg:w-96 md:w-96  w-[18rem] rounded-md border-2  bg-primary text-white font-bold hover:bg-hover' onClick={handleSave}>Submit</button>
             </form>
         </div>
     );
