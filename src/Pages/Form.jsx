@@ -114,7 +114,7 @@ const Form = () => {
                     required
                     minLength={5}
                     maxLength={20}
-                    placeholder="Jhone Alex"
+                    placeholder="Jhon Alex"
                     value={formData.name}
                     onChange={handleInputChange}
                 />
