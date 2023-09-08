@@ -93,7 +93,7 @@ const Form = () => {
                 <React.Fragment key={key}>
                     <option
                         value={key}
-                        className={isSelected ? 'appearance-none bg-bgPrimary text-primary hover:bg-primary lg:py-2 md:py-2 py-[1px]  my-[1px] hover:text-white lg:font-bold md:font-bold font-normal lg:text-sm md:text-md text-sm rounded-md' : ''}
+                        className={isSelected ? 'appearance-none bg-bgPrimary text-primary hover:bg-primary lg:py-2 md:py-2 py-[1px]  my-[1px] hover:text-white lg:font-bold md:font-bold font-normal lg:text-sm md:text-md text-sm rounded-md' : 'Tap On Box to Select Items'}
                     >
                         {indentation.repeat(level)}{key}{isSelected ? `   ✓` : ''}
                     </option>
